@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Money Track Modern Poster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #4e54c8;
+            --secondary-color: #8f94fb;
+            --accent-pink: #ff758c;
+            --dark-text: #2d3748;
+            --light-text: #4a5568;
+            --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            --card-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            --poster-width: 1200px;
+            --poster-height: 1700px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #333; /* Dark background for screen viewing */
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        /* --- MAIN POSTER CONTAINER --- */
+        .poster-container {
+            width: var(--poster-width);
+            min-height: var(--poster-height);
+            /* Beautiful subtle background pattern */
+            background: #f3f4f6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(78, 84, 200, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 117, 140, 0.1) 0%, transparent 20%);
+            
+            padding: 50px;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border-radius: 15px; /* Rounded corners for screen */
+        }
+
+        /* Decorative Top Bar */
+        .top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-pink));
+        }
+
+        /* --- HEADER --- */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+        }
+
+        .logo-circle {
+            width: 110px;
+            height: 110px;
+            background: transparent;
+            border-radius: 50%;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 30px;
+            /* border: 4px solid white; */
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-text {
+            text-align: center;
+        }
+
+        .college-name {
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            line-height: 1.2;
+            letter-spacing: 1px;
+        }
+
+        .college-sub {
+            font-size: 18px;
+            color: var(--light-text);
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        /* --- TITLE --- */
+        .project-title-container {
+            text-align: center;
+            margin-bottom: 50px;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            border-left: 10px solid var(--accent-pink);
+        }
+
+        .project-title {
+            font-size: 65px;
+            font-weight: 900;
+            text-transform: uppercase;
+            /* Gradient Text Effect */
+            background: -webkit-linear-gradient(0deg, var(--primary-color), #ff758c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .project-sub {
+            font-size: 22px;
+            color: #666;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        /* --- LAYOUT GRID --- */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            flex-grow: 1;
+        }
+
+        /* --- CARD DESIGN --- */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #eee;
+            display: inline-block;
+        }
+
+        .card-content {
+            font-size: 18px;
+            color: var(--dark-text);
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        /* Abstract styling specific */
+        .abstract-card {
+            background: linear-gradient(135deg, #fff 0%, #f3f4ff 100%);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        /* --- LISTS --- */
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        ul li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: var(--accent-pink);
+            font-weight: bold;
+        }
+
+        /* --- FLOWCHART (BEAUTIFIED) --- */
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        .flow-node {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px; /* Pill shape */
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            width: 80%;
+            box-shadow: 0 5px 15px rgba(78, 84, 200, 0.3);
+        }
+
+        .flow-arrow {
+            font-size: 24px;
+            color: var(--light-text);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.5;
+        }
+
+        /* --- FOOTER / TEAM --- */
+        .footer-section {
+            margin-top: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: end;
+        }
+
+        .ref-box {
+            font-size: 12px;
+            color: #777;
+            background: rgba(255,255,255,0.6);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .team-box {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: right;
+            box-shadow: 0 10px 20px rgba(78, 84, 200, 0.4);
+        }
+
+        .team-header {
+            font-size: 20px;
+            opacity: 0.8;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .team-names {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        /* --- PRINT OPTIMIZATION --- */
+        @media print {
+            body {
+                background: none;
+                margin: 0;
+                padding: 0;
+            }
+            .poster-container {
+                box-shadow: none;
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+            /* Force background colors print */
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="poster-container">
+        <div class="top-bar"></div>
+
+        <!-- HEADER -->
+        <header class="header">
+            <!-- Place 'headerImg.jpeg' in the same folder, or replace with your logo -->
+            <div class="logo-circle">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <div class="header-text">
+                <div class="college-name">Bharathamatha College of Arts & Science</div>
+                <div class="college-sub">
+                    Kozhinjampara, Palakkad-678555<br>
+                    Affiliated to University of Calicut | Accredited by NAAC
+                </div>
+            </div>
+            <div class="logo-circle">
+                <img src="chavara.png" alt="Logo">
+            </div>
+
+        </header>
+
+        <!-- PROJECT TITLE -->
+        <div class="project-title-container">
+            <div class="project-title">MONEY TRACK</div>
+            <div class="project-sub">Voice-Enabled Expense Tracker using Python</div>
+        </div>
+
+        <!-- MAIN GRID -->
+        <div class="grid-layout">
+            
+            <!-- LEFT COLUMN -->
+            <div class="column">
+                
+                <!-- ABSTRACT -->
+                <div class="card abstract-card">
+                    <div class="card-title">Abstract</div>
+                    <div class="card-content">
+                        Money Track is a Python-based voice-enabled expense tracker that lets users record daily spending quickly through speech or typing. All expenses are saved in a JSON file, and the system provides summaries and charts to help users easily understand their spending habits without complex database setups.
+                    </div>
+                </div>
+
+                <!-- METHODOLOGY -->
+                <div class="card">
+                    <div class="card-title">Methodology / Data Flow</div>
+                    <div class="flow-container">
+                        <div class="flow-node">User Interface (Voice/Manual)</div>
+                        <div class="flow-arrow">▼</div>
+                        
+                        <div class="flow-node">Data Validation (Format Check)</div>
+                        <div class="flow-arrow">▼</div>
+
+                        <div class="flow-node">Dataset Storage (JSON File)</div>
+                        <div class="flow-arrow">▼</div>
+
+                        <div class="flow-node">Data Retrieval (Processing)</div>
+                        <div class="flow-arrow">▼</div>
+
+                        <div class="flow-node">Visual Analysis (Charts)</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="column">
+                
+                <!-- ABOUT -->
+                <div class="card">
+                    <div class="card-title">About The Project</div>
+                    <div class="card-content">
+                        The Money Track App is an offline Python application designed for financial awareness.
+                        <br><br>
+                        <ul>
+                            <li><strong>Offline Capability:</strong> No internet needed.</li>
+                            <li><strong>Voice Command:</strong> "Spent 500 on Food".</li>
+                            <li><strong>Secure:</strong> Local JSON storage ensures privacy.</li>
+                            <li><strong>Visuals:</strong> Matplotlib graphs for analysis.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- REQUIREMENTS -->
+                <div class="card">
+                    <div class="card-title">Software Requirements</div>
+                    <div class="card-content">
+                        <ul>
+                            <li><strong>OS:</strong> Windows / Linux / macOS</li>
+                            <li><strong>Language:</strong> Python 3.x</li>
+                            <li><strong>Development:</strong> VS Code / PyCharm</li>
+                            <li><strong>Libraries:</strong> JSON, Matplotlib, SpeechRecognition, Vosk, Scipy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- MODULES -->
+                <div class="card">
+                    <div class="card-title">Modules</div>
+                    <div class="card-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <span>1. User Interaction</span>
+                        <span>2. Expense Manager</span>
+                        <span>3. JSON Storage</span>
+                        <span>4. Voice Input</span>
+                        <span>5. Notifications</span>
+                        <span>6. Reporting</span>
+                        <span>7. Summary</span>
+                        <span>8. Validation</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-section">
+            <div class="card">
+                <div><strong>References:</strong></div><br>
+                1. Python Documentation (docs.python.org)<br>
+                2. Matplotlib Developers (Visualization)<br>
+                3. Vosk Offline Speech Recognition<br>
+                4. JSON.org Data Format Standard
+            </div>
+
+            <div class="team-box">
+                <div class="team-header">Project Team</div>
+                <div class="team-names">
+                    Akshaya<br>
+                    Anagha<br>
+                    Sreyas<br>
+                    Amith
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
