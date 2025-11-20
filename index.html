@@ -242,7 +242,7 @@
         .footer-section {
             margin-top: auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: fr fr;
             gap: 40px;
             align-items: end;
         }
@@ -339,7 +339,7 @@
                 <div class="card abstract-card">
                     <div class="card-title">Abstract</div>
                     <div class="card-content">
-                        Money Track is a Python-based voice-enabled expense tracker that lets users record daily spending quickly through speech or typing. All expenses are saved in a JSON file, and the system provides summaries and charts to help users easily understand their spending habits without complex database setups.
+                       Money Track is a Python-based voice-enabled expense tracker that lets users record daily spending quickly through speech or typing. All expenses are saved in a JSON file, and the system provides summaries and charts to help users easily understand their spending habits.
                     </div>
                 </div>
 
@@ -353,15 +353,29 @@
                         <div class="flow-node">Data Validation (Format Check)</div>
                         <div class="flow-arrow">▼</div>
 
-                        <div class="flow-node">Dataset Storage (JSON File)</div>
+                        <div class="flow-node">Dataset Storage (Csv /JSON File)</div>
                         <div class="flow-arrow">▼</div>
 
-                        <div class="flow-node">Data Retrieval (Processing)</div>
+                        <div class="flow-node">Data Retrieval (Table / Chart)</div>
+                        <div class="flow-arrow">▼</div>
+                                                <div class="flow-node">Data Analysis (Total Expense)</div>
                         <div class="flow-arrow">▼</div>
 
                         <div class="flow-node">Visual Analysis (Charts)</div>
                     </div>
                 </div>
+
+                            <div class="card">
+                <div><strong>References:</strong></div><br>
+                1. Python Documentation (docs.python.org)<br>
+                2. Matplotlib Developers (Visualization)<br>
+                3. Vosk Offline Speech Recognition<br>
+                 4. Scipy Developers, “Scipy Signal Processing Documentation.<br>
+                5. JSON.org Data Format Standard<br>
+                6. SoundDevice Library, “Python SoundDevice Documentation.”<br>
+                7. GeeksforGeeks, Articles on Python File Handling and JSON.<br>
+                8. TutorialsPoint, Basic Python Programming Tutorials.
+            </div>
 
             </div>
 
@@ -372,14 +386,15 @@
                 <div class="card">
                     <div class="card-title">About The Project</div>
                     <div class="card-content">
-                        The Money Track App is an offline Python application designed for financial awareness.
+                        <!-- The Money Track App is an offline Python application designed for financial awareness.
                         <br><br>
                         <ul>
                             <li><strong>Offline Capability:</strong> No internet needed.</li>
                             <li><strong>Voice Command:</strong> "Spent 500 on Food".</li>
                             <li><strong>Secure:</strong> Local JSON storage ensures privacy.</li>
                             <li><strong>Visuals:</strong> Matplotlib graphs for analysis.</li>
-                        </ul>
+                        </ul> -->
+                        The Money Track App is an offline Python application that helps users manage daily expenses easily. It allows users to add entries by typing or using offline voice-to-text input. All expense data is saved in a JSON file, making storage simple and secure without internet or databases. The project focuses on easy expense entry, viewing records, and maintaining personal financial tracking in a lightweight and user-friendly way.
                     </div>
                 </div>
 
@@ -392,6 +407,7 @@
                             <li><strong>Language:</strong> Python 3.x</li>
                             <li><strong>Development:</strong> VS Code / PyCharm</li>
                             <li><strong>Libraries:</strong> JSON, Matplotlib, SpeechRecognition, Vosk, Scipy</li>
+                            <li><strong>Storage:</strong> Local JSON file (offline)</li>
                         </ul>
                     </div>
                 </div>
@@ -399,15 +415,15 @@
                 <!-- MODULES -->
                 <div class="card">
                     <div class="card-title">Modules</div>
-                    <div class="card-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <span>1. User Interaction</span>
-                        <span>2. Expense Manager</span>
-                        <span>3. JSON Storage</span>
-                        <span>4. Voice Input</span>
-                        <span>5. Notifications</span>
-                        <span>6. Reporting</span>
-                        <span>7. Summary</span>
-                        <span>8. Validation</span>
+                    <div class="card-content" style="display: grid; grid-template-columns: 1fr fr; gap: 10px;">
+                        <span>1. User Module</span>
+                        <span>2. Expense Management Module</span>
+                        <span>3. JSON Data Storage Module</span>
+                        <span>4. Voice Input (Speech Recognition) Module</span>
+                        <span>5. Notification Module</span>
+                        <span>6. Reporting & Charts Module</span>
+                        <span>7. Summary Module</span>
+                        <span>8. Validation Module</span>
                     </div>
                 </div>
 
@@ -416,13 +432,7 @@
 
         <!-- FOOTER -->
         <div class="footer-section">
-            <div class="card">
-                <div><strong>References:</strong></div><br>
-                1. Python Documentation (docs.python.org)<br>
-                2. Matplotlib Developers (Visualization)<br>
-                3. Vosk Offline Speech Recognition<br>
-                4. JSON.org Data Format Standard
-            </div>
+
 
             <div class="team-box">
                 <div class="team-header">Project Team</div>
