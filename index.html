@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Money Track Modern Poster</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <!-- LIBRARY FOR IMAGE GENERATION -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -31,7 +28,7 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Times New Roman', Times, serif;
             background-color: #333; /* Dark background for screen viewing */
             display: flex;
             flex-direction: column; /* Stack poster and button vertically */
@@ -66,6 +63,18 @@
             width: 100%;
             height: 15px;
             background: linear-gradient(90deg, var(--primary-color), var(--accent-pink));
+        }
+
+        /* --- HEADER IMAGE --- */
+        .header-image-container {
+            width: 100%;
+            margin-bottom: 40px; /* Space between header and title */
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+            padding-bottom: 30px;
+        }
+        .header-image-container img {
+            width: 100%;
+            display: block;
         }
 
         /* --- HEADER --- */
@@ -123,11 +132,7 @@
         .project-title-container {
             text-align: center;
             margin-bottom: 50px;
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-            border-left: 10px solid var(--accent-pink);
+            background-color: transparent; /* Fix for html2canvas rendering */
         }
 
         .project-title {
@@ -192,17 +197,17 @@
         }
 
         /* --- LISTS --- */
-        ul {
+        .styled-list {
             list-style: none;
         }
 
-        ul li {
+        .styled-list li {
             margin-bottom: 12px;
             padding-left: 25px;
             position: relative;
         }
 
-        ul li::before {
+        .styled-list li::before {
             content: "✔";
             position: absolute;
             left: 0;
@@ -244,7 +249,8 @@
         .footer-section {
             margin-top: auto;
             display: flex;
-            justify-content: flex-end; /* Aligns team box to right */
+            justify-content: space-between; /* Aligns items to ends */
+            align-items: flex-end;
             padding-top: 20px;
         }
 
@@ -254,6 +260,10 @@
             background: rgba(255,255,255,0.6);
             padding: 15px;
             border-radius: 10px;
+            max-width: 60%;
+        }
+        .ref-box div {
+            margin-bottom: 2px;
         }
 
         .team-box {
@@ -293,7 +303,7 @@
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
             transition: transform 0.2s, background-color 0.2s;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .download-btn:hover {
@@ -330,9 +340,16 @@
     <div class="poster-container" id="poster-content">
         <div class="top-bar"></div>
 
+        <!-- HEADER IMAGE -->
+        <div class="header-image-container">
+            <img src="headerImg.jpeg" alt="College Header Banner">
+        </div>
+
+
         <!-- HEADER -->
-        <header class="header">
-            <!-- Place 'logo.png' in the same folder -->
+         <!-- Place 'logo.png' in the same folder -->
+        <!-- <header class="header">
+            
             <div class="logo-circle">
                 <img src="logo.png" alt="Logo">
             </div>
@@ -343,12 +360,11 @@
                     Affiliated to University of Calicut | Accredited by NAAC
                 </div>
             </div>
-            <!-- Place 'chavara.png' in the same folder -->
             <div class="logo-circle">
                 <img src="chavara.png" alt="Logo">
             </div>
 
-        </header>
+        </header> -->
 
         <!-- PROJECT TITLE -->
         <div class="project-title-container">
@@ -366,7 +382,7 @@
                 <div class="card abstract-card">
                     <div class="card-title">Abstract</div>
                     <div class="card-content">
-                       Money Track is a Python-based voice-enabled expense tracker that lets users record daily spending quickly through speech or typing. All expenses are saved in a JSON file, and the system provides summaries and charts to help users easily understand their spending habits.
+and manage their daily financial transactions. The system allows users to add expenses using either text input or voice commands, which are converted into text through an offline speech-to-text module. Each expense entry contains details such as amount, category, date, and description. All data is stored in a JSON file, offering lightweight, readable, and efficient data management without requiring an internet connection or external databases. The application includes essential features such as adding new expenses, viewing saved expenses, calculating totals, and organizing entries by category. By combining Python’s file handling, offline JSON storage, and offline speech recognition, this application provides a simple, accessible, and user-friendly solution for personal expense management without any online dependency. This project demonstrates practical use of Python modules, data serialization, and voice processing in a completely offline environment.
                     </div>
                 </div>
 
@@ -393,32 +409,6 @@
                     </div>
                 </div>
 
-                <!-- <div class="card card-content">
-                    <div><strong>References:</strong></div><br>
-                   <span>1. Python Documentation (docs.python.org)</span> <br>
-                    2. Matplotlib Developers (Visualization)<br>
-                    3. Vosk Offline Speech Recognition<br>
-                    4. Scipy Developers, “Scipy Signal Processing Documentation.<br>
-                    5. JSON.org Data Format Standard<br>
-                    6. SoundDevice Library, “Python SoundDevice Documentation.”<br>
-                    7. GeeksforGeeks, Articles on Python File Handling and JSON.<br>
-                    8. TutorialsPoint, Basic Python Programming Tutorials.
-                </div> -->
-                <!-- REFERENCES (Styled like Modules) -->
-<div class="card">
-    <div class="card-title">References</div>
-    <div class="card-content" style="display: grid; grid-template-columns: 1fr fr; gap: 10px;">
-        <span>1. Python Documentation (docs.python.org)</span>
-        <span>2. Matplotlib Developers (Visualization)</span>
-        <span>3. Vosk Offline Speech Recognition</span>
-        <span>4. Scipy Developers, “Scipy Signal Processing Documentation”</span>
-        <span>5. JSON.org Data Format Standard</span>
-        <span>6. SoundDevice Library, “Python SoundDevice Documentation”</span>
-        <span>7. GeeksforGeeks, Articles on Python File Handling and JSON</span>
-        <span>8. TutorialsPoint, Basic Python Programming Tutorials</span>
-    </div>
-</div>
-
             </div>
 
             <!-- RIGHT COLUMN -->
@@ -436,7 +426,7 @@
                 <div class="card">
                     <div class="card-title">Software Requirements</div>
                     <div class="card-content">
-                        <ul>
+                        <ul class="styled-list">
                             <li><strong>OS:</strong> Windows / Linux / macOS</li>
                             <li><strong>Language:</strong> Python 3.x</li>
                             <li><strong>Development:</strong> VS Code / PyCharm</li>
@@ -449,15 +439,15 @@
                 <!-- MODULES -->
                 <div class="card">
                     <div class="card-title">Modules</div>
-                    <div class="card-content" style="display: grid; grid-template-columns: 1fr fr; gap: 10px;">
-                        <span>1. User Module</span>
-                        <span>2. Expense Management Module</span>
-                        <span>3. JSON Data Storage Module</span>
-                        <span>4. Voice Input (Speech Recognition) Module</span>
-                        <span>5. Notification Module</span>
-                        <span>6. Reporting & Charts Module</span>
-                        <span>7. Summary Module</span>
-                        <span>8. Validation Module</span>
+                    <div class="card-content">
+                        <div>1. User Module</div>
+                        <div>2. Expense Management Module</div>
+                        <div>3. JSON Data Storage Module</div>
+                        <div>4. Voice Input (Speech Recognition) Module</div>
+                        <div>5. Notification Module</div>
+                        <div>6. Reporting & Charts Module</div>
+                        <div>7. Summary Module</div>
+                        <div>8. Validation Module</div>
                     </div>
                 </div>
 
@@ -466,8 +456,19 @@
 
         <!-- FOOTER -->
         <div class="footer-section">
+            <div class="ref-box">
+                <strong>References:</strong>
+                <div>1. Python Documentation (docs.python.org)</div>
+                <div>2. Matplotlib Developers (Visualization)</div>
+                <div>3. Vosk Offline Speech Recognition</div>
+                <div>4. Scipy Developers, “Scipy Signal Processing Documentation”</div>
+                <div>5. JSON.org Data Format Standard</div>
+                <div>6. SoundDevice Library, “Python SoundDevice Documentation”</div>
+                <div>7. GeeksforGeeks, Articles on Python File Handling and JSON</div>
+            </div>
+
             <div class="team-box">
-                <div class="team-header">Project Team</div>
+                <div class="team-header">Team Members</div>
                 <div class="team-names">
                     Akshaya<br>
                     Anagha<br>
@@ -495,7 +496,7 @@
             html2canvas(posterNode, {
                 scale: 4, // High Resolution (4x)
                 useCORS: true, // Handles images if they are on a server
-                backgroundColor: "#f3f4f6" // Ensures background isn't transparent
+                 // Let html2canvas detect the background
             }).then(canvas => {
                 // Create a fake link to trigger download
                 const link = document.createElement('a');
