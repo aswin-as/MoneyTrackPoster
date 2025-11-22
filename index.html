@@ -132,6 +132,7 @@
         .project-title-container {
             text-align: center;
             margin-bottom: 50px;
+            color: #666;
             background-color: transparent; /* Fix for html2canvas rendering */
         }
 
@@ -139,15 +140,16 @@
             font-size: 65px;
             font-weight: 900;
             text-transform: uppercase;
-            background: -webkit-linear-gradient(0deg, var(--primary-color), #ff758c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: rgb(4, 4, 253);
+            /* background: -webkit-linear-gradient(0deg, var(--primary-color), #ff758c); */
+            /* -webkit-background-clip: text; */
+            /* -webkit-text-fill-color: transparent; */
             margin-bottom: 5px;
         }
 
         .project-sub {
             font-size: 22px;
-            color: #666;
+            color: rgb(4, 4, 253);
             font-style: italic;
             letter-spacing: 2px;
         }
@@ -162,14 +164,7 @@
 
         /* --- CARD DESIGN --- */
         .card {
-            background: white;
-            border-radius: 20px;
-            padding: 35px;
-            margin-bottom: 35px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 40px; /* Space between cards */
         }
 
         .card-title {
@@ -177,10 +172,15 @@
             font-weight: 700;
             color: var(--primary-color);
             text-transform: uppercase;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #eee;
-            display: inline-block;
+            margin-bottom: 15px; /* Space between title and card content */
+        }
+
+        .card-content-box {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
         }
 
         .card-content {
@@ -192,8 +192,8 @@
 
         /* Abstract styling specific */
         .abstract-card {
-            background: linear-gradient(135deg, #fff 0%, #f3f4ff 100%);
-            border-left: 5px solid var(--primary-color);
+            background: linear-gradient(135deg, #fff 0%, #f3f4ff 100%) !important; /* Override default */
+            border-left: 5px solid var(--primary-color) !important;
         }
 
         /* --- LISTS --- */
@@ -226,12 +226,12 @@
         .flow-node {
             background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 15px 30px;
-            border-radius: 50px; /* Pill shape */
+            padding: 20px 30px;
+            border-radius: 0; /* Square shape */
             font-weight: 600;
             font-size: 16px;
             text-align: center;
-            width: 80%;
+            width: 90%;
             box-shadow: 0 5px 15px rgba(78, 84, 200, 0.3);
         }
 
@@ -257,13 +257,13 @@
         .ref-box {
             font-size: 12px;
             color: #777;
-            background: rgba(255,255,255,0.6);
-            padding: 15px;
-            border-radius: 10px;
             max-width: 60%;
         }
         .ref-box div {
             margin-bottom: 2px;
+        }
+        .ref-box strong {
+            text-transform: uppercase;
         }
 
         .team-box {
@@ -379,33 +379,36 @@
             <div class="column">
                 
                 <!-- ABSTRACT -->
-                <div class="card abstract-card">
+                <div class="card">
                     <div class="card-title">Abstract</div>
-                    <div class="card-content">
-and manage their daily financial transactions. The system allows users to add expenses using either text input or voice commands, which are converted into text through an offline speech-to-text module. Each expense entry contains details such as amount, category, date, and description. All data is stored in a JSON file, offering lightweight, readable, and efficient data management without requiring an internet connection or external databases. The application includes essential features such as adding new expenses, viewing saved expenses, calculating totals, and organizing entries by category. By combining Python’s file handling, offline JSON storage, and offline speech recognition, this application provides a simple, accessible, and user-friendly solution for personal expense management without any online dependency. This project demonstrates practical use of Python modules, data serialization, and voice processing in a completely offline environment.
-                    </div>
+                    <div class="card-content-box abstract-card"><div class="card-content">
+                        The Money Track App is a fully offline Python application designed to help users record and manage their daily financial transactions. The system allows users to add expenses using either text input or voice commands, which are converted into text through an offline speech-to-text module. Each expense entry contains details such as amount, category, date, and description. All data is stored in a JSON file, offering lightweight, readable, and efficient data management without requiring an internet connection or external databases. The application includes essential features such as adding new expenses, viewing saved expenses, calculating totals, and organizing entries by category. By combining Python’s file handling, offline JSON storage, and offline speech recognition, this application provides a simple, accessible, and user-friendly solution for personal expense management without any online dependency. This project demonstrates practical use of Python modules, data serialization, and voice processing in a completely offline environment.
+
+                    </div></div>
                 </div>
 
                 <!-- METHODOLOGY -->
                 <div class="card">
                     <div class="card-title">Methodology / Data Flow</div>
-                    <div class="flow-container">
-                        <div class="flow-node">User Interface (Voice/Manual)</div>
-                        <div class="flow-arrow">▼</div>
-                        
-                        <div class="flow-node">Data Validation (Format Check)</div>
-                        <div class="flow-arrow">▼</div>
+                    <div class="card-content-box">
+                        <div class="flow-container">
+                            <div class="flow-node">[User Interface (Voice/Manual)]</div>
+                            <div class="flow-arrow">▼</div>
+                            
+                            <div class="flow-node">[Data Validation (Format Check)]</div>
+                            <div class="flow-arrow">▼</div>
 
-                        <div class="flow-node">Dataset Storage (Csv /JSON File)</div>
-                        <div class="flow-arrow">▼</div>
+                            <div class="flow-node">[Dataset Storage (Csv /JSON File)]</div>
+                            <div class="flow-arrow">▼</div>
 
-                        <div class="flow-node">Data Retrieval (Table / Chart)</div>
-                        <div class="flow-arrow">▼</div>
-                        
-                        <div class="flow-node">Data Analysis (Total Expense)</div>
-                        <div class="flow-arrow">▼</div>
+                            <div class="flow-node">[Data Retrieval (Table / Chart)]</div>
+                            <div class="flow-arrow">▼</div>
+                            
+                            <div class="flow-node">[Data Analysis (Total Expense)]</div>
+                            <div class="flow-arrow">▼</div>
 
-                        <div class="flow-node">Visual Analysis (Charts)</div>
+                            <div class="flow-node">[Visual Analysis (Charts)]</div>
+                        </div>
                     </div>
                 </div>
 
@@ -417,37 +420,43 @@ and manage their daily financial transactions. The system allows users to add ex
                 <!-- ABOUT -->
                 <div class="card">
                     <div class="card-title">About The Project</div>
-                    <div class="card-content">
-                        The Money Track App is an offline Python application that helps users manage daily expenses easily. It allows users to add entries by typing or using offline voice-to-text input. All expense data is saved in a JSON file, making storage simple and secure without internet or databases. The project focuses on easy expense entry, viewing records, and maintaining personal financial tracking in a lightweight and user-friendly way.
+                    <div class="card-content-box">
+                        <div class="card-content">
+                            The Money Track App is an offline Python application that helps users manage daily expenses easily. It allows users to add entries by typing or using offline voice-to-text input. All expense data is saved in a JSON file, making storage simple and secure without internet or databases. The project focuses on easy expense entry, viewing records, and maintaining personal financial tracking in a lightweight and user-friendly way.
+                        </div>
                     </div>
                 </div>
 
                 <!-- REQUIREMENTS -->
                 <div class="card">
                     <div class="card-title">Software Requirements</div>
-                    <div class="card-content">
-                        <ul class="styled-list">
-                            <li><strong>OS:</strong> Windows / Linux / macOS</li>
-                            <li><strong>Language:</strong> Python 3.x</li>
-                            <li><strong>Development:</strong> VS Code / PyCharm</li>
-                            <li><strong>Libraries:</strong> JSON, Matplotlib, SpeechRecognition, Vosk, Scipy</li>
-                            <li><strong>Storage:</strong> Local JSON file (offline)</li>
-                        </ul>
+                    <div class="card-content-box">
+                        <div class="card-content">
+                            <ul class="styled-list">
+                                <li><strong>OS:</strong> Windows / Linux / macOS</li>
+                                <li><strong>Language:</strong> Python 3.x</li>
+                                <li><strong>Development:</strong> VS Code</li>
+                                <li><strong>Libraries:</strong> JSON, Matplotlib, SpeechRecognition, Vosk, Scipy</li>
+                                <li><strong>Storage:</strong> Local JSON file (offline)</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <!-- MODULES -->
                 <div class="card">
                     <div class="card-title">Modules</div>
-                    <div class="card-content">
-                        <div>1. User Module</div>
-                        <div>2. Expense Management Module</div>
-                        <div>3. JSON Data Storage Module</div>
-                        <div>4. Voice Input (Speech Recognition) Module</div>
-                        <div>5. Notification Module</div>
-                        <div>6. Reporting & Charts Module</div>
-                        <div>7. Summary Module</div>
-                        <div>8. Validation Module</div>
+                    <div class="card-content-box">
+                        <div class="card-content">
+                            <div>1. User Module</div>
+                            <div>2. Expense Management Module</div>
+                            <div>3. JSON Data Storage Module</div>
+                            <div>4. Voice Input (Speech Recognition) Module</div>
+                            <div>5. Notification Module</div>
+                            <div>6. Reporting & Charts Module</div>
+                            <div>7. Summary Module</div>
+                            <div>8. Validation Module</div>
+                        </div>
                     </div>
                 </div>
 
@@ -457,7 +466,7 @@ and manage their daily financial transactions. The system allows users to add ex
         <!-- FOOTER -->
         <div class="footer-section">
             <div class="ref-box">
-                <strong>References:</strong>
+                <strong>REFERENCES:</strong>
                 <div>1. Python Documentation (docs.python.org)</div>
                 <div>2. Matplotlib Developers (Visualization)</div>
                 <div>3. Vosk Offline Speech Recognition</div>
@@ -495,8 +504,8 @@ and manage their daily financial transactions. The system allows users to add ex
 
             html2canvas(posterNode, {
                 scale: 4, // High Resolution (4x)
-                useCORS: true, // Handles images if they are on a server
-                 // Let html2canvas detect the background
+                 // Handles images if they are on a server
+                // Let html2canvas detect the background
             }).then(canvas => {
                 // Create a fake link to trigger download
                 const link = document.createElement('a');
