@@ -6,6 +6,9 @@
     
     <!-- LIBRARY FOR IMAGE GENERATION -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Library for pdf genereation -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 
     <style>
         /* --- CSS VARIABLES & RESET --- */
@@ -291,7 +294,7 @@
         }
 
         /* --- BUTTON STYLING --- */
-        .download-btn {
+        .download-btn, .download-pdf-btn {
             margin-top: 30px;
             padding: 15px 40px;
             background-color: #ff758c;
@@ -306,7 +309,7 @@
             font-family: 'Times New Roman', Times, serif;
         }
 
-        .download-btn:hover {
+        .download-btn, .download-pdf-btn :hover {
             background-color: #ff5e78;
             transform: translateY(-3px);
         }
@@ -324,7 +327,7 @@
                 height: 100%;
                 border-radius: 0;
             }
-            .download-btn {
+            .download-btn,.download-pdf-btn {
                 display: none; /* Hide button when printing */
             }
             * {
@@ -501,9 +504,43 @@
 
     <!-- BUTTON OUTSIDE THE POSTER CONTAINER -->
     <button class="download-btn" onclick="downloadPoster()">Download High Quality PNG</button>
+    <button class="download-pdf-btn" onclick="downloadPosterPDF()">
+    Download High Quality PDF
+</button>
+
 
     <!-- SCRIPT FOR DOWNLOAD -->
     <script>
+        async function downloadPosterPDF() {
+    const { jsPDF } = window.jspdf;
+    const posterNode = document.getElementById('poster-content');
+    const button = document.querySelector('.download-pdf-btn');
+    
+    // Indicate processing
+    button.innerText = "Generating PDF...";
+    button.style.opacity = "0.7";
+
+    try {
+        const canvas = await html2canvas(posterNode, { scale: 4 });
+        const imgData = canvas.toDataURL('image/png');
+
+        // A4 size: 794×1123 px — matches your poster dimensions
+        const pdf = new jsPDF('portrait', 'px', [794, 1123]);
+
+        pdf.addImage(imgData, 'PNG', 0, 0, 794, 1123);
+        pdf.save('MoneyTrack_Poster.pdf');
+
+        button.innerText = "Download High Quality PDF";
+        button.style.opacity = "1";
+
+    } catch (err) {
+        console.error("PDF generation error:", err);
+        alert("Error generating PDF.");
+        button.innerText = "Download High Quality PDF";
+        button.style.opacity = "1";
+    }
+}
+
         function downloadPoster() {
             const button = document.querySelector('.download-btn');
             const posterNode = document.getElementById('poster-content');
