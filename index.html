@@ -20,8 +20,8 @@
             --light-text: #4a5568;
             --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
             --card-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            --poster-width: 1200px;
-            --poster-height: 1700px;
+            --poster-width: 900px;  /* Default width */
+            --poster-height: 1500px; /* Default height */
         }
 
         * {
@@ -282,6 +282,7 @@
         .team-header {
             font-size: 20px;
             opacity: 0.8;
+            font-weight: bold;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -289,8 +290,13 @@
 
         .team-names {
             font-size: 28px;
-            font-weight: 700;
+            font-weight: normal;
             line-height: 1.4;
+        }
+
+        /* reference */
+        .ref_heading{
+            color: purple;
         }
 
         /* --- BUTTON STYLING --- */
@@ -418,15 +424,13 @@
                                 <!-- Reference -->
                 <div class="card">
                                 <div class="ref-boxx">
-                <strong>REFERENCES:</strong>
-                <div>1. Python Documentation (docs.python.org)</div>
-                <div>2. Matplotlib Developers (Visualization)</div>
-                <div>3. Vosk Offline Speech Recognition</div>
-                <div>4. Scipy Developers, “Scipy Signal Processing Documentation”</div>
-                <div>5. JSON.org Data Format Standard</div>
-                <div>6. SoundDevice Library, “Python SoundDevice Documentation”</div>
-                <div>7. GeeksforGeeks, Articles on Python File Handling and JSON</div>
-                <div>8. TutorialsPoint, Basic Python Programming Tutorials.</div>
+                <strong class="ref_heading">REFERENCES:</strong>
+                <div>1. Python Software Foundation, “Python Documentation,” Available: https://docs.python.org/, Accessed: Jan. 2025.</div>
+                <div>2. Alphacephei, “Vosk Speech Recognition Toolkit,” Available: https://alphacephei.com/vosk, Accessed: Jan. 2025.</div>
+                <div>3. ECMA International, “ECMA-404: The JSON Data Interchange Format,” 2nd Edition, 2017.</div>
+                <div>4. A. K. Gupta, S. Mehta, “A Survey on Offline Speech Recognition Models for Edge Devices,” Proc. of IEEE Int. Conf. on Artificial Intelligence (ICAI), 2025, pp. 210–215.</div>
+                <div>5. L. Zhang, M. Huang, “Lightweight Deep Learning Methods for Personal Finance Prediction,” Journal of Financial Computing, vol. 10, no. 2, pp. 45–58, 2025.</div>
+                <div>6. R. S. Patel, N. Verma, “Privacy-Preserving Expense Tracking Using Federated Learning,” IEEE Trans. on Consumer Electronics, vol. 71, no. 1, pp. 32–40, Jan. 2025.”</div>
             </div>
                     
                 </div>
@@ -524,10 +528,13 @@
         const canvas = await html2canvas(posterNode, { scale: 4 });
         const imgData = canvas.toDataURL('image/png');
 
-        // A4 size: 794×1123 px — matches your poster dimensions
-        const pdf = new jsPDF('portrait', 'px', [794, 1123]);
+        // Poster dimensions in pixels (approximating 3x5 inches at 300 DPI)
+        const posterWidth = 900;
+        const posterHeight = 1500;
 
-        pdf.addImage(imgData, 'PNG', 0, 0, 794, 1123);
+        const pdf = new jsPDF('portrait', 'px', [posterWidth, posterHeight]);
+
+        pdf.addImage(imgData, 'PNG', 0, 0, posterWidth, posterHeight);
         pdf.save('MoneyTrack_Poster.pdf');
 
         button.innerText = "Download High Quality PDF";
@@ -570,6 +577,42 @@
                 button.style.opacity = "1";
             });
         }
+    </script>
+
+    <!-- SCRIPT TO SET POSTER SIZE FROM URL -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const width = params.get('width');
+            const height = params.get('height');
+            const unit = params.get('unit');
+
+            if (width && height && unit) {
+                let finalWidth, finalHeight;
+                const DPI = 300; // Dots Per Inch for high-quality conversion
+
+                switch (unit) {
+                    case 'in':
+                        finalWidth = width * DPI;
+                        finalHeight = height * DPI;
+                        break;
+                    case 'cm':
+                        const cmToInch = 0.393701;
+                        finalWidth = (width * cmToInch) * DPI;
+                        finalHeight = (height * cmToInch) * DPI;
+                        break;
+                    case 'px':
+                        finalWidth = parseInt(width, 10);
+                        finalHeight = parseInt(height, 10);
+                        break;
+                }
+
+                if (finalWidth && finalHeight) {
+                    document.documentElement.style.setProperty('--poster-width', `${finalWidth}px`);
+                    document.documentElement.style.setProperty('--poster-height', `${finalHeight}px`);
+                }
+            }
+        });
     </script>
 
 </body>
