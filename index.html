@@ -2,618 +2,97 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Money Track Modern Poster</title>
-    
-    <!-- LIBRARY FOR IMAGE GENERATION -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Library for pdf genereation -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Configuration</title>
     <style>
-        /* --- CSS VARIABLES & RESET --- */
         :root {
             --primary-color: #4e54c8;
             --secondary-color: #8f94fb;
-            --accent-pink: #ff758c;
             --dark-text: #2d3748;
-            --light-text: #4a5568;
-            --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            --card-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            --poster-width: 900px;  /* Default width */
-            --poster-height: 1500px; /* Default height */
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            font-family: 'Times New Roman', Times, serif;
-            background-color: #333; /* Dark background for screen viewing */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f4f6;
             display: flex;
-            flex-direction: column; /* Stack poster and button vertically */
-            align-items: center;
-            padding: 40px;
-        }
-
-        /* --- MAIN POSTER CONTAINER --- */
-        .poster-container {
-            width: var(--poster-width);
-            min-height: var(--poster-height);
-            /* Beautiful subtle background pattern */
-            background: #f3f4f6;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(78, 84, 200, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 117, 140, 0.1) 0%, transparent 20%);
-            
-            padding: 50px;
-            position: relative;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            border-radius: 15px; 
-        }
-
-        /* Decorative Top Bar */
-        .top-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 15px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-pink));
-        }
-
-        /* --- HEADER IMAGE --- */
-        .header-image-container {
-            width: 100%;
-            margin-bottom: 40px; /* Space between header and title */
-            border-bottom: 2px solid rgba(0,0,0,0.05);
-            padding-bottom: 30px;
-        }
-        .header-image-container img {
-            width: 100%;
-            display: block;
-        }
-
-        /* --- HEADER --- */
-        .header {
-            display: flex;
-            align-items: center;
             justify-content: center;
-            margin-bottom: 50px;
-            position: relative;
-            padding-bottom: 30px;
-            border-bottom: 2px solid rgba(0,0,0,0.05);
-        }
-
-        .logo-circle {
-            width: 110px;
-            height: 110px;
-            background: transparent;
-            border-radius: 50%;
-            box-shadow: var(--card-shadow);
-            display: flex;
             align-items: center;
-            justify-content: center;
-            margin-right: 30px;
-            overflow: hidden;
-            flex-shrink: 0;
+            height: 100vh;
+            margin: 0;
         }
-
-        .logo-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .header-text {
-            text-align: center;
-        }
-
-        .college-name {
-            font-size: 34px;
-            font-weight: 800;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            line-height: 1.2;
-            letter-spacing: 1px;
-        }
-
-        .college-sub {
-            font-size: 18px;
-            color: var(--light-text);
-            margin-top: 5px;
-            font-weight: 500;
-        }
-
-        /* --- TITLE --- */
-        .project-title-container {
-            text-align: center;
-            margin-bottom: 50px;
-            color: #666;
-            background-color: transparent; /* Fix for html2canvas rendering */
-        }
-
-        .project-title {
-            font-size: 65px;
-            font-weight: 900;
-            text-transform: uppercase;
-            color: rgb(4, 4, 253);
-            /* background: -webkit-linear-gradient(0deg, var(--primary-color), #ff758c); */
-            /* -webkit-background-clip: text; */
-            /* -webkit-text-fill-color: transparent; */
-            margin-bottom: 5px;
-        }
-
-        .project-sub {
-            font-size: 22px;
-            color: rgb(4, 4, 253);
-            font-style: italic;
-            letter-spacing: 2px;
-        }
-
-        /* --- LAYOUT GRID --- */
-        .grid-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            flex-grow: 1;
-        }
-
-        /* --- CARD DESIGN --- */
-        .card {
-            margin-bottom: 40px; /* Space between cards */
-        }
-
-        .card-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            margin-bottom: 15px; /* Space between title and card content */
-        }
-
-        .card-content-box {
+        .config-container {
             background: white;
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease;
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
         }
-
-        .card-content {
-            font-size: 18px;
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
             color: var(--dark-text);
-            line-height: 1.7;
-            text-align: justify;
+            font-weight: 600;
         }
-
-        /* Abstract styling specific */
-        .abstract-card {
-            background: linear-gradient(135deg, #fff 0%, #f3f4ff 100%) !important; /* Override default */
-            border-left: 5px solid var(--primary-color) !important;
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
         }
-
-        /* --- LISTS --- */
-        .styled-list {
-            list-style: none;
-        }
-
-        .styled-list li {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .styled-list li::before {
-            content: "✔";
-            position: absolute;
-            left: 0;
-            color: var(--accent-pink);
-            font-weight: bold;
-        }
-
-        /* --- FLOWCHART (BEAUTIFIED) --- */
-        .flow-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0;
-        }
-
-        .flow-node {
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
             background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 20px 30px;
-            border-radius: 0; /* Square shape */
-            font-weight: 600;
-            font-size: 16px;
-            text-align: center;
-            width: 90%;
-            box-shadow: 0 5px 15px rgba(78, 84, 200, 0.3);
-        }
-
-        .flow-arrow {
-            font-size: 24px;
-            color: var(--light-text);
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.5;
-        }
-
-        /* --- FOOTER / TEAM --- */
-        .footer-section {
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between; /* Aligns items to ends */
-            align-items: flex-end;
-            padding-top: 20px;
-        }
-
-        .ref-box {
-            font-size: 12px;
-            color: #777;
-            max-width: 60%;
-        }
-        .ref-box div {
-            margin-bottom: 2px;
-        }
-        .ref-box strong {
-            text-transform: uppercase;
-        }
-
-        .team-box {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: right;
-            box-shadow: 0 10px 20px rgba(78, 84, 200, 0.4);
-            min-width: 300px;
-        }
-
-        .team-header {
-            font-size: 20px;
-            opacity: 0.8;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .team-names {
-            font-size: 28px;
-            font-weight: normal;
-            line-height: 1.4;
-        }
-
-        /* reference */
-        .ref_heading{
-            color: purple;
-        }
-
-        /* --- BUTTON STYLING --- */
-        .download-btn, .download-pdf-btn {
-            margin-top: 30px;
-            padding: 15px 40px;
-            background-color: #ff758c;
-            color: white;
+            border: none;
+            border-radius: 8px;
             font-size: 18px;
             font-weight: bold;
-            border: none;
-            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
-            transition: transform 0.2s, background-color 0.2s;
-            font-family: 'Times New Roman', Times, serif;
+            transition: transform 0.2s;
+            margin-top: 10px;
         }
-
-        .download-btn, .download-pdf-btn :hover {
-            background-color: #ff5e78;
-            transform: translateY(-3px);
-        }
-
-        /* --- PRINT OPTIMIZATION --- */
-        @media print {
-            body {
-                background: none;
-                margin: 0;
-                padding: 0;
-            }
-            .poster-container {
-                box-shadow: none;
-                width: 100%;
-                height: 100%;
-                border-radius: 0;
-            }
-            .download-btn,.download-pdf-btn {
-                display: none; /* Hide button when printing */
-            }
-            * {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
+        .submit-btn:hover {
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
 
-    <!-- ID added here for screenshot targeting -->
-    <div class="poster-container" id="poster-content">
-        <div class="top-bar"></div>
-
-        <!-- HEADER IMAGE -->
-        <div class="header-image-container">
-            <img src="headerImg.jpeg" alt="College Header Banner">
-        </div>
-
-
-        <!-- HEADER -->
-         <!-- Place 'logo.png' in the same folder -->
-        <!-- <header class="header">
-            
-            <div class="logo-circle">
-                <img src="logo.png" alt="Logo">
+    <div class="config-container">
+        <h1>Set Poster Dimensions</h1>
+        <form action="index2.html" method="GET">
+            <div class="form-group">
+                <label for="width">Width</label>
+                <input type="number" id="width" name="width" value="3" required>
             </div>
-            <div class="header-text">
-                <div class="college-name">Bharathamatha College of Arts & Science</div>
-                <div class="college-sub">
-                    Kozhinjampara, Palakkad-678555<br>
-                    Affiliated to University of Calicut | Accredited by NAAC
-                </div>
+            <div class="form-group">
+                <label for="height">Height</label>
+                <input type="number" id="height" name="height" value="5" required>
             </div>
-            <div class="logo-circle">
-                <img src="chavara.png" alt="Logo">
+            <div class="form-group">
+                <label for="unit">Unit</label>
+                <select id="unit" name="unit">
+                    <option value="in" selected>Inches (at 300 DPI)</option>
+                    <option value="cm">Centimeters (at 300 DPI)</option>
+                    <option value="px">Pixels</option>
+                </select>
             </div>
-
-        </header> -->
-
-        <!-- PROJECT TITLE -->
-        <div class="project-title-container">
-            <div class="project-title">MONEY TRACK</div>
-            <div class="project-sub">Voice-Enabled Expense Tracker using Python</div>
-        </div>
-
-        <!-- MAIN GRID -->
-        <div class="grid-layout">
-            
-            <!-- LEFT COLUMN -->
-            <div class="column">
-                
-                <!-- ABSTRACT -->
-                <div class="card">
-                    <div class="card-title">Abstract</div>
-                    <div class="card-content-box abstract-card"><div class="card-content">
-                        Money Track is an offline Python-based expense tracking system designed to help users monitor and manage their daily financial activities efficiently. The application supports both manual typing and voice-based input using the offline Vosk speech recognition engine, allowing users to record expenses quickly and conveniently. All data is stored permanently in a local JSON file, which acts as the system’s lightweight dataset and removes the need for an internet connection or external database. The project also includes features such as daily and monthly summaries, category-wise spending analysis, and visual charts to help users clearly understand their financial behavior. Money Track aims to offer a simple, private, and user-friendly platform for individuals who want an effective way to track their expenses offline.
-
-                    </div></div>
-                </div>
-
-                <!-- METHODOLOGY -->
-                <div class="card">
-                    <div class="card-title">Methodology</div>
-                    <div class="card-content-box">
-                        <div class="flow-container">
-                            <div class="flow-node">[User Interface (Voice/Manual)]</div>
-                            <div class="flow-arrow">▼</div>
-                            
-                            <div class="flow-node">[Data Validation (Format Check)]</div>
-                            <div class="flow-arrow">▼</div>
-
-                            <div class="flow-node">[Dataset Storage (Csv /JSON File)]</div>
-                            <div class="flow-arrow">▼</div>
-
-                            <div class="flow-node">[Data Retrieval (Table / Chart)]</div>
-                            <div class="flow-arrow">▼</div>
-                            
-                            <div class="flow-node">[Data Analysis (Total Expense)]</div>
-                            <div class="flow-arrow">▼</div>
-
-                            <div class="flow-node">[Visual Analysis (Charts)]</div>
-                        </div>
-                    </div>
-                </div>
-
-                                <!-- Reference -->
-                <div class="card">
-                                <div class="ref-boxx">
-                <strong class="ref_heading">REFERENCES:</strong>
-                <div>1. Python Software Foundation, “Python Documentation,” Available: https://docs.python.org/, Accessed: Jan. 2025.</div>
-                <div>2. Alphacephei, “Vosk Speech Recognition Toolkit,” Available: https://alphacephei.com/vosk, Accessed: Jan. 2025.</div>
-                <div>3. ECMA International, “ECMA-404: The JSON Data Interchange Format,” 2nd Edition, 2017.</div>
-                <div>4. A. K. Gupta, S. Mehta, “A Survey on Offline Speech Recognition Models for Edge Devices,” Proc. of IEEE Int. Conf. on Artificial Intelligence (ICAI), 2025, pp. 210–215.</div>
-                <div>5. L. Zhang, M. Huang, “Lightweight Deep Learning Methods for Personal Finance Prediction,” Journal of Financial Computing, vol. 10, no. 2, pp. 45–58, 2025.</div>
-                <div>6. R. S. Patel, N. Verma, “Privacy-Preserving Expense Tracking Using Federated Learning,” IEEE Trans. on Consumer Electronics, vol. 71, no. 1, pp. 32–40, Jan. 2025.”</div>
-            </div>
-                    
-                </div>
-
-            </div>
-
-            <!-- RIGHT COLUMN -->
-            <div class="column">
-                
-                <!-- ABOUT -->
-                <div class="card">
-                    <div class="card-title">About The Project</div>
-                    <div class="card-content-box">
-                        <div class="card-content">
-                            Money Track is an offline expense management application created using Python to provide users with a smooth and practical way to track their day-to-day spending. The system allows users to record expenses either by typing or through voice commands using Vosk, enabling hands-free and faster data entry. All recorded information is stored securely in a JSON file, which serves as the project’s dataset and ensures that users can access their data without internet connectivity. The application also generates summaries, category-based reports, and visual charts to give users better insights into their spending habits. By combining simplicity, offline functionality, and voice-enabled features, Money Track provides a convenient and reliable tool for students and general users to manage their expenses effectively.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- REQUIREMENTS -->
-                <div class="card">
-                    <div class="card-title">Software Requirements</div>
-                    <div class="card-content-box">
-                        <div class="card-content">
-                            <ul class="styled-list">
-                                <li><strong>OS:</strong> Windows</li>
-                                <li><strong>Language:</strong> Python 3.x</li>
-                                <li><strong>Development:</strong> VS Code</li>
-                                <li><strong>Libraries:</strong> JSON, Matplotlib, SpeechRecognition, Vosk, Scipy</li>
-                                <li><strong>Storage:</strong> Local JSON file (offline)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MODULES -->
-                <div class="card">
-                    <div class="card-title">Modules</div>
-                    <div class="card-content-box">
-                        <div class="card-content">
-                            <div>1. User Module</div>
-                            <div>2. Expense Management Module</div>
-                            <div>3. JSON Data Storage Module</div>
-                            <div>4. Voice Input (Speech Recognition) Module</div>
-                            <div>5. Notification Module</div>
-                            <div>6. Reporting & Charts Module</div>
-                            <div>7. Validation Module</div>
-                        </div>
-                    </div>
-                </div>
-
-                                <!-- MODULES -->
-                <div class="card">
-                    
-                    <div class="card-content-boxx">
-                         <div class="team-box">
-                <div class="team-header">Team Members</div>
-                <div class="team-names">
-                    Akshaya A<br>
-                    Anagha S<br>
-                    Sreyas M<br>
-                    Amith Madavan
-                </div>
-            </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- FOOTER -->
-
-
+            <button type="submit" class="submit-btn">Generate Poster</button>
+        </form>
     </div>
-
-    <!-- BUTTON OUTSIDE THE POSTER CONTAINER -->
-    <button class="download-btn" onclick="downloadPoster()">Download High Quality PNG</button>
-    <button class="download-pdf-btn" onclick="downloadPosterPDF()">
-    Download High Quality PDF
-</button>
-
-
-    <!-- SCRIPT FOR DOWNLOAD -->
-    <script>
-        async function downloadPosterPDF() {
-    const { jsPDF } = window.jspdf;
-    const posterNode = document.getElementById('poster-content');
-    const button = document.querySelector('.download-pdf-btn');
-    
-    // Indicate processing
-    button.innerText = "Generating PDF...";
-    button.style.opacity = "0.7";
-
-    try {
-        const canvas = await html2canvas(posterNode, { scale: 4 });
-        const imgData = canvas.toDataURL('image/png');
-
-        // Poster dimensions in pixels (approximating 3x5 inches at 300 DPI)
-        const posterWidth = 900;
-        const posterHeight = 1500;
-
-        const pdf = new jsPDF('portrait', 'px', [posterWidth, posterHeight]);
-
-        pdf.addImage(imgData, 'PNG', 0, 0, posterWidth, posterHeight);
-        pdf.save('MoneyTrack_Poster.pdf');
-
-        button.innerText = "Download High Quality PDF";
-        button.style.opacity = "1";
-
-    } catch (err) {
-        console.error("PDF generation error:", err);
-        alert("Error generating PDF.");
-        button.innerText = "Download High Quality PDF";
-        button.style.opacity = "1";
-    }
-}
-
-        function downloadPoster() {
-            const button = document.querySelector('.download-btn');
-            const posterNode = document.getElementById('poster-content');
-
-            // Change button text to show processing
-            button.innerText = "Generating Image...";
-            button.style.opacity = "0.7";
-
-            html2canvas(posterNode, {
-                scale: 4, // High Resolution (4x)
-                 // Handles images if they are on a server
-                // Let html2canvas detect the background
-            }).then(canvas => {
-                // Create a fake link to trigger download
-                const link = document.createElement('a');
-                link.download = 'MoneyTrack_Poster.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-
-                // Restore button
-                button.innerText = "Download High Quality PNG";
-                button.style.opacity = "1";
-            }).catch(err => {
-                console.error("Error generating image:", err);
-                alert("Error generating image.");
-                button.innerText = "Download High Quality PNG";
-                button.style.opacity = "1";
-            });
-        }
-    </script>
-
-    <!-- SCRIPT TO SET POSTER SIZE FROM URL -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const width = params.get('width');
-            const height = params.get('height');
-            const unit = params.get('unit');
-
-            if (width && height && unit) {
-                let finalWidth, finalHeight;
-                const DPI = 300; // Dots Per Inch for high-quality conversion
-
-                switch (unit) {
-                    case 'in':
-                        finalWidth = width * DPI;
-                        finalHeight = height * DPI;
-                        break;
-                    case 'cm':
-                        const cmToInch = 0.393701;
-                        finalWidth = (width * cmToInch) * DPI;
-                        finalHeight = (height * cmToInch) * DPI;
-                        break;
-                    case 'px':
-                        finalWidth = parseInt(width, 10);
-                        finalHeight = parseInt(height, 10);
-                        break;
-                }
-
-                if (finalWidth && finalHeight) {
-                    document.documentElement.style.setProperty('--poster-width', `${finalWidth}px`);
-                    document.documentElement.style.setProperty('--poster-height', `${finalHeight}px`);
-                }
-            }
-        });
-    </script>
 
 </body>
 </html>
