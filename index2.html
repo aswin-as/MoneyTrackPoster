@@ -299,7 +299,7 @@
         }
 
         /* --- BUTTON STYLING --- */
-        .download-btn, .download-pdf-btn {
+        .download-btn, .download-pdf-btn, .download-jpeg-btn {
             margin-top: 30px;
             padding: 15px 40px;
             background-color: #ff758c;
@@ -314,7 +314,7 @@
             font-family: 'Times New Roman', Times, serif;
         }
 
-        .download-btn, .download-pdf-btn :hover {
+        .download-btn:hover, .download-pdf-btn:hover, .download-jpeg-btn:hover {
             background-color: #ff5e78;
             transform: translateY(-3px);
         }
@@ -509,11 +509,14 @@
     <button class="download-btn" onclick="downloadPoster()">Download High Quality PNG</button>
     <button class="download-pdf-btn" onclick="downloadPosterPDF()">
     Download High Quality PDF
-</button>
+    </button>
+    <button class="download-jpeg-btn" onclick="downloadPosterJPEG()">Download High Quality JPEG</button>
 
 
     <!-- SCRIPT FOR DOWNLOAD -->
     <script>
+        
+
         async function downloadPosterPDF() {
     const { jsPDF } = window.jspdf;
     const posterNode = document.getElementById('poster-content');
@@ -573,6 +576,35 @@
                 console.error("Error generating image:", err);
                 alert("Error generating image.");
                 button.innerText = "Download High Quality PNG";
+                button.style.opacity = "1";
+            });
+        }
+
+        function downloadPosterJPEG() {
+            const button = document.querySelector('.download-jpeg-btn');
+            const posterNode = document.getElementById('poster-content');
+
+            // Change button text to show processing
+            button.innerText = "Generating Image...";
+            button.style.opacity = "0.7";
+
+            html2canvas(posterNode, {
+                scale: 4, // High Resolution (4x)
+                backgroundColor: '#f3f4f6' // Set a background color for JPEG
+            }).then(canvas => {
+                // Create a fake link to trigger download
+                const link = document.createElement('a');
+                link.download = 'MoneyTrack_Poster.jpeg';
+                link.href = canvas.toDataURL('image/jpeg', 0.9); // Use image/jpeg and set quality
+                link.click();
+
+                // Restore button
+                button.innerText = "Download High Quality JPEG";
+                button.style.opacity = "1";
+            }).catch(err => {
+                console.error("Error generating JPEG image:", err);
+                alert("Error generating JPEG image.");
+                button.innerText = "Download High Quality JPEG";
                 button.style.opacity = "1";
             });
         }
